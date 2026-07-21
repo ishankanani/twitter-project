@@ -1877,7 +1877,7 @@ export function LangProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <LangCtx.Provider value={{ lang, t: dict, setLang, fmt }}>
+    <LangCtx.Provider value={{ lang, t: dict as any, setLang, fmt }}>
       {children}
     </LangCtx.Provider>
   );
