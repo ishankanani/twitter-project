@@ -57,13 +57,12 @@ export default function AdminTweetsPage() {
     setXUrl('');
     setComposer(true);
   }
-
-  function openEdit(t: Tweet) {
-    setEditId(t.id);
-    setAccountHandle(t.accountHandle);
-    setRichText(t.richText || `<p>${escapeHtml(t.text)}</p>`);
-    setMedia(t.media as MediaItem[] || []);
-    setXUrl(t.xUrl || '');
+function openEdit(tweet: Tweet) {
+    setEditId(tweet.id);
+    setAccountHandle(tweet.accountHandle);
+    setRichText(tweet.richText || `<p>${escapeHtml(tweet.text)}</p>`);
+    setMedia(tweet.media as MediaItem[] || []);
+    setXUrl(tweet.xUrl || '');
     setComposer(true);
   }
 
@@ -151,28 +150,28 @@ export default function AdminTweetsPage() {
           <tbody>
             {list.length === 0 ? (
               <tr><td colSpan={6} style={{ textAlign: 'center', padding: '2rem', color: 'var(--muted)' }}>Gönderi yok</td></tr>
-            ) : list.map(t => (
-              <tr key={t.id}>
-                <td style={{ color: 'var(--red)', fontFamily: 'monospace', fontSize: '.78rem' }}>@{t.accountHandle}</td>
+            ) : list.map(tw => (
+              <tr key={tw.id}>
+                <td style={{ color: 'var(--red)', fontFamily: 'monospace', fontSize: '.78rem' }}>@{tw.accountHandle}</td>
                 <td style={{ maxWidth: 360 }}>
-                  {t.richText ? (
+                  {tw.richText ? (
                     <div style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', fontSize: '.86rem' }}
-                      dangerouslySetInnerHTML={{ __html: t.richText }} />
+                      dangerouslySetInnerHTML={{ __html: tw.richText }} />
                   ) : (
-                    <div style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{t.text}</div>
+                    <div style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{tw.text}</div>
                   )}
                 </td>
                 <td style={{ fontSize: '.78rem' }}>
-                  {t.media && t.media.length > 0 ? `📎 ${t.media.length}` : '—'}
+                  {tw.media && tw.media.length > 0 ? `📎 ${tw.media.length}` : '—'}
                 </td>
-                <td style={{ fontSize: '.78rem', color: 'var(--muted)' }}>{timeAgo(t.createdAt)}</td>
-                <td><span className={`admin-tag ${t.source === 'manual' ? 'red' : 'gray'}`}>{t.source}</span></td>
+                <td style={{ fontSize: '.78rem', color: 'var(--muted)' }}>{timeAgo(tw.createdAt)}</td>
+                <td><span className={`admin-tag ${tw.source === 'manual' ? 'red' : 'gray'}`}>{tw.source}</span></td>
                 <td>
                   <div style={{ display: 'flex', gap: 6 }}>
-                    {t.source === 'manual' && (
-                      <button className="admin-btn admin-btn-ghost" onClick={() => openEdit(t)}>{t.admin_edit}</button>
+                    {tw.source === 'manual' && (
+                      <button className="admin-btn admin-btn-ghost" onClick={() => openEdit(tw)}>{t.admin_edit}</button>
                     )}
-                    <button className="admin-btn admin-btn-danger" onClick={() => setConfirm(t.id)}>{t.admin_delete}</button>
+                    <button className="admin-btn admin-btn-danger" onClick={() => setConfirm(tw.id)}>{t.admin_delete}</button>
                   </div>
                 </td>
               </tr>
