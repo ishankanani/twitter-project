@@ -1,4 +1,4 @@
-'use client';
+ 'use client';
 import { useEffect, useState } from 'react';
 import { api, Tweet, timeAgo } from '@/lib/api';
 import { useAdminAuth } from '@/components/admin/AdminAuth';

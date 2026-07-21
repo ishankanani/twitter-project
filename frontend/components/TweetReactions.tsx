@@ -23,17 +23,17 @@ export default function TweetReactions({ tweetId }: { tweetId: number }) {
       const r = await api.get(`/api/tweets/${tweetId}/reactions`, token);
       setCounts(r.counts || {});
       setActive(r.userReactions || []);
-    } catch {}
+    } catch { }
   }
   useEffect(() => { load(); }, [tweetId, token]);
 
   async function react(reaction: string) {
     setBusy(true);
     try {
-      const r = await api.post(`/api/tweets/${tweetId}/react`, { reaction }, token);
-      setCounts(r.counts || {});
-      setActive(prev => r.active ? [...new Set([...prev, reaction])] : prev.filter(x => x !== reaction));
-    } catch {}
+      const res = await api.post(`/api/tweets/${tweetId}/react`, { reaction }, token);
+      setCounts(res.counts || {});
+      setActive(prev => res.active ? (prev.includes(reaction) ? prev : [...prev, reaction]) : prev.filter(x => x !== reaction));
+    } catch { }
     setBusy(false);
   }
 
