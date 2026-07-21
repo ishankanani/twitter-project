@@ -1,0 +1,29 @@
+{
+  "name": "sosyalag-backend",
+  "version": "3.2.0",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "db:init": "node lib/initDb.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.2.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "otpauth": "^9.2.2",
+    "pg": "^8.11.5",
+    "qrcode": "^1.5.3",
+    "resend": "^3.5.0",
+    "rss-parser": "^3.13.0",
+    "sanitize-html": "^2.13.0",
+    "sharp": "^0.33.4"
+  },
+  "engines": { "node": ">=18.0.0" }
+}
